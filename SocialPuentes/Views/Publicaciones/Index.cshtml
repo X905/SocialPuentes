@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SocialPuentes.Models.Publicacione>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URL_Imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URL_Archivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Publicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorías.CategoriaNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Full_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Publicacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URL_Imagen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URL_Archivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Publicacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categorías.CategoriaNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Full_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Publicacion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Publicacion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Publicacion })
+        </td>
+    </tr>
+}
+
+</table>

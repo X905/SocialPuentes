@@ -1,0 +1,50 @@
+﻿@model SocialPuentes.Models.Sugerencia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sugerencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sugerencia1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sugerencia1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Full_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Full_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Sugerencias }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

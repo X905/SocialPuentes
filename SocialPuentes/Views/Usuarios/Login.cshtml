@@ -1,0 +1,382 @@
+﻿@model SocialPuentes.Models.Usuario
+
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+
+}
+
+
+<style type="text/css">
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        padding: 50px;
+    }
+
+    .container-inside {
+        width: 801px;
+        margin: auto;
+        border-radius: 10px;
+        perspective: 600px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .left-side {
+        width: 400px;
+        height: 550px;
+        border-radius: 10px 0px 0px 10px;
+        perspective: 600px;
+        background-color: #70E2CB;
+    }
+
+    .left-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .right-side {
+        width: 400px;
+        height: 550px;
+        border-radius: 0px 10px 10px 0px;
+        perspective: 600px;
+        background-color: #394B63;
+    }
+
+    .right-side, .left-side {
+        animation: pop 2s infinite ease-in-out;
+    }
+
+    .right-side {
+        animation-delay: 1s;
+        animation-iteration-count: 4;
+    }
+
+    /* start editing the right-size content */
+    .buttons-container {
+        width: 80%;
+        height: 50px;
+        margin: auto;
+    }
+
+    .sign-in, .sign-up {
+        float: right;
+        font-size: 10px;
+        font-family: 'Raleway',sans-serif;
+        width: 68px;
+        padding: 5px;
+        margin-top: 15px;
+        outline: none;
+        border: none;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .sign-in {
+        border-radius: 10px 0px 0px 10px;
+        background-color: #b2c9e9;
+        color: white;
+    }
+
+    .sign-up {
+        border-radius: 0px 10px 10px 0px;
+        background-color: #98abc9;
+        color: white;
+    }
+
+        .sign-in:hover, .sign-up:hover {
+            width: 90px;
+            cursor: pointer;
+        }
+
+    /* header and label edits */
+    .header {
+        width: 230px;
+        margin: 100px 0px 0px 70px;
+    }
+
+    .header2 {
+        width: 230px;
+        margin: 20px 0px 0px 70px;
+    }
+
+    .hed lighter {
+        margin-left: 20px;
+    }
+
+    .hed span {
+        margin-left: 10px;
+        color: #f1f1f1;
+        border-bottom: 2px solid #b2c9e9;
+    }
+
+    .hed {
+        font-family: 'Quicksand',sans-serif;
+        font-size: 100%;
+        font-weight: lighter;
+        color: rgba(255, 255, 255, 0.4);
+        cursor: default;
+    }
+
+    .inputs-cont, .inputs-cont2 {
+        width: 80%;
+        margin: 35px 0px 0px 70px;
+    }
+
+    .input-label {
+        font-size: 10px;
+        color: #f1f1f1;
+        font-weight: lighter;
+        font-family: 'Quicksand',sans-serif;
+        margin: 14px 0px 10px 0px;
+        display: block;
+    }
+
+    .input-take {
+        background-color: transparent;
+        outline: none;
+        border: none;
+        width: 250px;
+        padding: 5px;
+        color: #98abc9;
+        border-bottom: 2px solid rgba(209, 209, 209, 0.4);
+    }
+
+    .input-take2 {
+        background-color: transparent;
+        outline: none;
+        border: none;
+        width: 120px;
+        padding: 5px;
+        color: #98abc9;
+        border-bottom: 2px solid rgba(209, 209, 209, 0.4);
+    }
+
+    .input-take::placeholder {
+        font-size: 8px;
+        color: rgba(209, 209, 209, 0.4);
+    }
+
+    .ch {
+        margin: 15px 0px 10px 0px;
+        font-family: 'Quicksand',sans-serif;
+    }
+
+    .ch-label {
+        font-size: 10px;
+        color: rgba(209, 209, 209, 0.4);
+        font-family: 'Quicksand',sans-serif;
+    }
+
+        .ch-label span {
+            margin-left: 10px;
+            color: #f1f1f1;
+            font-family: 'Quicksand',sans-serif;
+            cursor: pointer;
+            border-bottom: 2px solid #b2c9e9;
+        }
+
+    /* **************************** */
+    input[type="checkbox"] {
+        -webkit-appearance: initial;
+        appearance: initial;
+        background: gray;
+        width: 10px;
+        height: 10px;
+        border: none;
+        background: gray;
+        position: relative;
+        top: 10px;
+    }
+
+        input[type="checkbox"]:checked {
+            background: #b2c9e9;
+            outline: none;
+        }
+
+            input[type="checkbox"]:checked:after {
+                content: "\2713";
+                color: #333;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%,-50%);
+                -moz-transform: translate(-50%,-50%);
+                -ms-transform: translate(-50%,-50%);
+                transform: translate(-50%,-50%);
+            }
+
+    .send {
+        display: block;
+        margin: 40px 0px 0px 90px;
+        width: 90px;
+        padding: 5px;
+        border-radius: 15px;
+        border: none;
+        outline: none;
+        color: #f1f1f1;
+        background-color: #98abc9;
+        border: 2px solid #b2c9e9;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .send:hover {
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+    .form-inline {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+    }
+</style>
+
+
+    <html>
+
+    <head>
+        <meta charset="utf-8" name="description" content="Log In and Sign Up Yo your Account">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Social Puentes - Registro </title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    </head>
+
+    <body>
+        <section class="container">
+            <section class="container-inside">
+                <div class="left-side">
+                    <img src="~/images/Puentes_Login.gif" class="left-img" title="SOCIAL PUENTES">
+                </div>
+                <div class="right-side">
+
+                    <div class="buttons-container">
+                        <button type="button" class="sign-up">Registrarse</button>
+                        <button type="button" class="sign-in">Inicie Sesión</button>
+                    </div>
+
+                    <div class="header2">
+                        <h3 class="hed">Registrarse<lighter> o </lighter><span>Inicie Sesión </span></h3>
+                    </div>
+                    <!--FORMULARIO REGISTRO-->
+                    <form class="inputs-cont " action="Login" method="post">
+                        <label class="input-label hidden">Nombre</label>
+                        <input type="text" class="input-take2" placeholder="Nombres" name="Nombre" required>
+                        <div style="margin: -20.10% 0 0 40%">
+                            <label class="input-label hidden ">Apellido</label>
+                            <input type="text" class="input-take2" placeholder="Apellidos" name="Apellido" required>
+                        </div>
+                        <label class="input-label">Fecha de nacimiento</label>
+                        <input type="date" class="input-take" placeholder="Fecha de nacimiento" name="Fecha" required>
+                        <label class="input-label">Correo</label>
+                        <input type="email" class="input-take" name="Email" placeholder="correo@algo.com" required>
+                        <label class="input-label">Contraseña</label>
+                        <input type="password" class="input-take2" name="Pass" placeholder="* * * * * * * *" required maxlength="12">
+                        <div style="margin: -20.10% 0 0 40%">
+                            <label class="input-label">Confirmar Contraseña</label>
+                            <input type="password" class="input-take2" name="PassConfirm" placeholder="* * * * * * * *" required maxlength="12">
+                        </div>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <label class="input-label">Cede</label>
+                            <select type="text" class="input-take2" name="cede" placeholder="UNIVO" required @Html.DropDownList("Id_Cede", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Id_Cede, "", new { @class = "text-danger" })
+
+                        <div style="margin: -20.90% 0 0 40%">
+
+                            <label class="input-label">Especialidad</label>
+                            <select type="text" name="Especialidad" class="input-take2"  placeholder="MVC,HTML,XAMARIN"
+                                   @Html.DropDownList("Id_Especialidad", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id_Especialidad, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <!-- check box -->
+                        <div style="margin: 5% 0 0 0">
+                            <input type="checkbox" class="ch hidden">
+                            <label class="ch-label hidden" required>Acepta los terminos y condiciones<span>Terminos de servicio</span></label>
+                            <div style="margin: -8% 0 0 0">
+                                <input class="send" type="submit" value="Registrarse">
+                            </div>
+                        </div>
+                        }
+                        </form>
+                    
+                        <!--FORMULARIO LOGIN-->
+                        <!-- for 2 -->
+                        <form class="inputs-cont2" action="Login" method="post">
+                            <div style="margin: 25% 0 0 0">
+                                <label class="input-label">Correo Electronico</label>
+                                <input type="email" class="input-take" placeholder="correo@algo.com" name="CorreoLog" required>
+                                <label class="input-label">Contraseña</label>
+                                <input type="password" class="input-take" placeholder="* * * * * * * *" required  name="PassLog">
+                                <!-- button -->
+                                <input class="send" type="submit" value="Inicie Sesión">
+                            </div>
+                        </form>
+
+                        <!-- end it fast -->
+                    </div>
+            </section>
+        </section>
+        <script src="main.js"></script>
+    </body>
+
+</html>
+
+
+
+<script>
+
+    var signIn = document.querySelector(".sign-in"),
+        signUp = document.querySelector(".sign-up"),
+        textLabel = document.querySelector(".hed"),
+        Form = document.querySelector(".inputs-cont2"),
+        Form2 = document.querySelector(".inputs-cont"),
+        UserDetails = document.querySelector(".input-take"),
+        goSend = document.querySelector(".send");
+    Form2.style.display = "none";
+    signIn.onclick = function () {
+        "use strict";
+        signIn.style.background = "#b2c9e9";
+        signUp.style.background = "#98abc9";
+        Form.style.display = "block";
+        Form2.style.display = "none";
+        document.title = 'Sign In';
+        textLabel.innerHTML =  "Registrarse <lighter> o </lighter><span>Inicie Sesión </span>";
+    };
+    signUp.onclick = function () {
+        "use strict";
+        signUp.style.background = "#b2c9e9";
+        signIn.style.background = "#98abc9";
+        Form2.style.display = "block";
+        Form.style.display = "none";
+        document.title = 'Sign Up';
+        textLabel.innerHTML = "Inicie Sesión <lighter> o </lighter><span>Registrarse </span>";
+    };
+
+    $("#formulario").validate({
+        rules: {
+            Pass: {
+                required: true
+            }
+        }
+    })
+
+
+</script>

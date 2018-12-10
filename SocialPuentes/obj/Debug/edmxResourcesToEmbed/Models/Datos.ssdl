@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_CPuentesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cedes">
+    <Key>
+      <PropertyRef Name="Id_Cede" />
+    </Key>
+    <Property Name="Id_Cede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CedeNombre" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Ubicacion" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Comentarios">
+    <Key>
+      <PropertyRef Name="Id_Comentario" />
+    </Key>
+    <Property Name="Id_Comentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Publicacion" Type="int" Nullable="false" />
+    <Property Name="Id_Usuario" Type="int" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="150" />
+    <Property Name="Comentario" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="URL_Imagen" Type="image" />
+    <Property Name="URL_Archivo" Type="varchar(max)" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Especialidades">
+    <Key>
+      <PropertyRef Name="Id_Especialidad" />
+    </Key>
+    <Property Name="Id_Especialidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EspecialidadNombre" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Id_Cede" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Modulos">
+    <Key>
+      <PropertyRef Name="Id_Modulos" />
+    </Key>
+    <Property Name="Id_Modulos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModulosNombre" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Publicaciones">
+    <Key>
+      <PropertyRef Name="Id_Publicacion" />
+    </Key>
+    <Property Name="Id_Publicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Usuario" Type="int" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="150" />
+    <Property Name="Tema" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Id_Modulos" Type="int" Nullable="false" />
+    <Property Name="Publicacion" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="URL_Imagen" Type="image" Nullable="false" />
+    <Property Name="URL_Archivo" Type="varchar(max)" />
+    <Property Name="Fecha_Publicacion" Type="datetime" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id_Rol" />
+    </Key>
+    <Property Name="Id_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rol" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sugerencias">
+    <Key>
+      <PropertyRef Name="Id_Sugerencias" />
+    </Key>
+    <Property Name="Id_Sugerencias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Usuario" Type="int" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="150" />
+    <Property Name="Sugerencia" Type="varchar" MaxLength="500" />
+    <Property Name="Fecha" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id_Usuario" />
+    </Key>
+    <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ImagenPerfil" Type="image" />
+    <Property Name="FechaNacimiento" Type="date" Nullable="false" />
+    <Property Name="Direccion" Type="varchar(max)" />
+    <Property Name="Correo" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Telefono" Type="varchar" MaxLength="14" />
+    <Property Name="Id_Cede" Type="int" Nullable="false" />
+    <Property Name="Id_Especialidad" Type="int" Nullable="false" />
+    <Property Name="Contraseña" Type="varchar(max)" Nullable="false" />
+    <Property Name="ConfirmarCrontraseña" Type="varchar(max)" Nullable="false" />
+    <Property Name="Id_Rol" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="Fecha_Registro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Valoraciones">
+    <Key>
+      <PropertyRef Name="Id_Valoracion" />
+    </Key>
+    <Property Name="Id_Valoracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Usuario" Type="int" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="varchar" MaxLength="150" />
+    <Property Name="Id_Publicacion" Type="int" Nullable="false" />
+    <Property Name="Valoracion" Type="int" />
+  </EntityType>
+  <Association Name="FK_Comentarios_Publicaciones">
+    <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+    <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publicaciones">
+        <PropertyRef Name="Id_Publicacion" />
+      </Principal>
+      <Dependent Role="Comentarios">
+        <PropertyRef Name="Id_Publicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comentarios_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Comentarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Especialidades_Cedes">
+    <End Role="Cedes" Type="Self.Cedes" Multiplicity="1" />
+    <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cedes">
+        <PropertyRef Name="Id_Cede" />
+      </Principal>
+      <Dependent Role="Especialidades">
+        <PropertyRef Name="Id_Cede" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publicaciones_Modulos">
+    <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
+    <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modulos">
+        <PropertyRef Name="Id_Modulos" />
+      </Principal>
+      <Dependent Role="Publicaciones">
+        <PropertyRef Name="Id_Modulos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publicaciones_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Publicaciones">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sugerencias_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Sugerencias" Type="Self.Sugerencias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Sugerencias">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Cedes">
+    <End Role="Cedes" Type="Self.Cedes" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cedes">
+        <PropertyRef Name="Id_Cede" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Id_Cede" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Especialidades">
+    <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidades">
+        <PropertyRef Name="Id_Especialidad" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Id_Especialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id_Rol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoraciones_Publicaciones">
+    <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+    <End Role="Valoraciones" Type="Self.Valoraciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publicaciones">
+        <PropertyRef Name="Id_Publicacion" />
+      </Principal>
+      <Dependent Role="Valoraciones">
+        <PropertyRef Name="Id_Publicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoraciones_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Valoraciones" Type="Self.Valoraciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Valoraciones">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Db_CPuentesModelStoreContainer">
+    <EntitySet Name="Cedes" EntityType="Self.Cedes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comentarios" EntityType="Self.Comentarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Especialidades" EntityType="Self.Especialidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modulos" EntityType="Self.Modulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Publicaciones" EntityType="Self.Publicaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sugerencias" EntityType="Self.Sugerencias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Valoraciones" EntityType="Self.Valoraciones" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Comentarios_Publicaciones" Association="Self.FK_Comentarios_Publicaciones">
+      <End Role="Publicaciones" EntitySet="Publicaciones" />
+      <End Role="Comentarios" EntitySet="Comentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comentarios_Usuarios" Association="Self.FK_Comentarios_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Comentarios" EntitySet="Comentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Especialidades_Cedes" Association="Self.FK_Especialidades_Cedes">
+      <End Role="Cedes" EntitySet="Cedes" />
+      <End Role="Especialidades" EntitySet="Especialidades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publicaciones_Modulos" Association="Self.FK_Publicaciones_Modulos">
+      <End Role="Modulos" EntitySet="Modulos" />
+      <End Role="Publicaciones" EntitySet="Publicaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publicaciones_Usuarios" Association="Self.FK_Publicaciones_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Publicaciones" EntitySet="Publicaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sugerencias_Usuarios" Association="Self.FK_Sugerencias_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Sugerencias" EntitySet="Sugerencias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Cedes" Association="Self.FK_Usuarios_Cedes">
+      <End Role="Cedes" EntitySet="Cedes" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Especialidades" Association="Self.FK_Usuarios_Especialidades">
+      <End Role="Especialidades" EntitySet="Especialidades" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Roles" Association="Self.FK_Usuarios_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoraciones_Publicaciones" Association="Self.FK_Valoraciones_Publicaciones">
+      <End Role="Publicaciones" EntitySet="Publicaciones" />
+      <End Role="Valoraciones" EntitySet="Valoraciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoraciones_Usuarios" Association="Self.FK_Valoraciones_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Valoraciones" EntitySet="Valoraciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

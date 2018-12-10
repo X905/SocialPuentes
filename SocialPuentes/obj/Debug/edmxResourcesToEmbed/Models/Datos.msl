@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Db_CPuentesModelStoreContainer" CdmEntityContainer="Db_CPuentesEntities">
+    <EntitySetMapping Name="Cedes">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Cede">
+        <MappingFragment StoreEntitySet="Cedes">
+          <ScalarProperty Name="Id_Cede" ColumnName="Id_Cede" />
+          <ScalarProperty Name="CedeNombre" ColumnName="CedeNombre" />
+          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comentarios">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Comentario">
+        <MappingFragment StoreEntitySet="Comentarios">
+          <ScalarProperty Name="Id_Comentario" ColumnName="Id_Comentario" />
+          <ScalarProperty Name="Id_Publicacion" ColumnName="Id_Publicacion" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+          <ScalarProperty Name="Comentario1" ColumnName="Comentario" />
+          <ScalarProperty Name="URL_Imagen" ColumnName="URL_Imagen" />
+          <ScalarProperty Name="URL_Archivo" ColumnName="URL_Archivo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especialidades">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Especialidade">
+        <MappingFragment StoreEntitySet="Especialidades">
+          <ScalarProperty Name="Id_Especialidad" ColumnName="Id_Especialidad" />
+          <ScalarProperty Name="EspecialidadNombre" ColumnName="EspecialidadNombre" />
+          <ScalarProperty Name="Id_Cede" ColumnName="Id_Cede" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sugerencias">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Sugerencia">
+        <MappingFragment StoreEntitySet="Sugerencias">
+          <ScalarProperty Name="Id_Sugerencias" ColumnName="Id_Sugerencias" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+          <ScalarProperty Name="Sugerencia1" ColumnName="Sugerencia" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Valoraciones">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Valoracione">
+        <MappingFragment StoreEntitySet="Valoraciones">
+          <ScalarProperty Name="Id_Valoracion" ColumnName="Id_Valoracion" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+          <ScalarProperty Name="Id_Publicacion" ColumnName="Id_Publicacion" />
+          <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modulos">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Modulo">
+        <MappingFragment StoreEntitySet="Modulos">
+          <ScalarProperty Name="ModulosNombre" ColumnName="ModulosNombre" />
+          <ScalarProperty Name="Id_Modulos" ColumnName="Id_Modulos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publicaciones">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Publicacione">
+        <MappingFragment StoreEntitySet="Publicaciones">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Fecha_Publicacion" ColumnName="Fecha_Publicacion" />
+          <ScalarProperty Name="URL_Archivo" ColumnName="URL_Archivo" />
+          <ScalarProperty Name="URL_Imagen" ColumnName="URL_Imagen" />
+          <ScalarProperty Name="Publicacion" ColumnName="Publicacion" />
+          <ScalarProperty Name="Id_Modulos" ColumnName="Id_Modulos" />
+          <ScalarProperty Name="Tema" ColumnName="Tema" />
+          <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Id_Publicacion" ColumnName="Id_Publicacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="Db_CPuentesModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+          <ScalarProperty Name="ConfirmarCrontraseña" ColumnName="ConfirmarCrontraseña" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+          <ScalarProperty Name="Id_Especialidad" ColumnName="Id_Especialidad" />
+          <ScalarProperty Name="Id_Cede" ColumnName="Id_Cede" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="ImagenPerfil" ColumnName="ImagenPerfil" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edfce30e43244ff7807cf51ae2b31e78" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="Db_CPuentesModel.Cede" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Comentario" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Especialidade" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Role" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Sugerencia" Width="1.5" PointX="7.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Valoracione" Width="1.5" PointX="12.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Especialidades_Cedes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Modulo" Width="1.5" PointX="8.25" PointY="8.75" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Publicacione" Width="1.5" PointX="10.5" PointY="4.625" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Comentarios_Publicaciones" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Publicaciones_Modulos" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Valoraciones_Publicaciones" />
+        <EntityTypeShape EntityType="Db_CPuentesModel.Usuario" Width="1.5" PointX="5.25" PointY="2.5" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Usuarios_Cedes" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Comentarios_Usuarios" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Usuarios_Especialidades" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Publicaciones_Usuarios" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Usuarios_Roles" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Sugerencias_Usuarios" />
+        <AssociationConnector Association="Db_CPuentesModel.FK_Valoraciones_Usuarios" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

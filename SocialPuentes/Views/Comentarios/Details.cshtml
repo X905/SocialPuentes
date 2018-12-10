@@ -1,0 +1,74 @@
+﻿@model SocialPuentes.Models.Comentario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comentario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentario1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comentario1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL_Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL_Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL_Archivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL_Archivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publicacione.Nombre_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publicacione.Nombre_Usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Full_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Full_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Comentario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

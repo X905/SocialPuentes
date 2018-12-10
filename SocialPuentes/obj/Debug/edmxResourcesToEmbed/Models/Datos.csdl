@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Db_CPuentesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cede">
+    <Key>
+      <PropertyRef Name="Id_Cede" />
+    </Key>
+    <Property Name="Id_Cede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CedeNombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ubicacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Especialidades" Relationship="Self.FK_Especialidades_Cedes" FromRole="Cedes" ToRole="Especialidades" />
+    <NavigationProperty Name="Usuarios" Relationship="Db_CPuentesModel.FK_Usuarios_Cedes" FromRole="Cede" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Comentario">
+    <Key>
+      <PropertyRef Name="Id_Comentario" />
+    </Key>
+    <Property Name="Id_Comentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Publicacion" Type="Int32" Nullable="false" />
+    <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Comentario1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="URL_Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="URL_Archivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Boolean" />
+    <NavigationProperty Name="Publicacione" Relationship="Db_CPuentesModel.FK_Comentarios_Publicaciones" FromRole="Comentario" ToRole="Publicacione" />
+    <NavigationProperty Name="Usuario" Relationship="Db_CPuentesModel.FK_Comentarios_Usuarios" FromRole="Comentario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Especialidade">
+    <Key>
+      <PropertyRef Name="Id_Especialidad" />
+    </Key>
+    <Property Name="Id_Especialidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EspecialidadNombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Id_Cede" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cede" Relationship="Self.FK_Especialidades_Cedes" FromRole="Especialidades" ToRole="Cedes" />
+    <NavigationProperty Name="Usuarios" Relationship="Db_CPuentesModel.FK_Usuarios_Especialidades" FromRole="Especialidade" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_Rol" />
+    </Key>
+    <Property Name="Id_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rol" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Db_CPuentesModel.FK_Usuarios_Roles" FromRole="Role" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Sugerencia">
+    <Key>
+      <PropertyRef Name="Id_Sugerencias" />
+    </Key>
+    <Property Name="Id_Sugerencias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Usuario" Type="Int32" />
+    <Property Name="Nombre_Usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Sugerencia1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Usuario" Relationship="Db_CPuentesModel.FK_Sugerencias_Usuarios" FromRole="Sugerencia" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Valoracione">
+    <Key>
+      <PropertyRef Name="Id_Valoracion" />
+    </Key>
+    <Property Name="Id_Valoracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Publicacion" Type="Int32" Nullable="false" />
+    <Property Name="Valoracion" Type="Int32" />
+    <NavigationProperty Name="Publicacione" Relationship="Db_CPuentesModel.FK_Valoraciones_Publicaciones" FromRole="Valoracione" ToRole="Publicacione" />
+    <NavigationProperty Name="Usuario" Relationship="Db_CPuentesModel.FK_Valoraciones_Usuarios" FromRole="Valoracione" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_Especialidades_Cedes">
+    <End Role="Cedes" Type="Self.Cede" Multiplicity="1" />
+    <End Role="Especialidades" Type="Self.Especialidade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cedes">
+        <PropertyRef Name="Id_Cede" />
+      </Principal>
+      <Dependent Role="Especialidades">
+        <PropertyRef Name="Id_Cede" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Db_CPuentesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cedes" EntityType="Self.Cede" />
+    <EntitySet Name="Comentarios" EntityType="Self.Comentario" />
+    <EntitySet Name="Especialidades" EntityType="Self.Especialidade" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Sugerencias" EntityType="Self.Sugerencia" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Valoraciones" EntityType="Self.Valoracione" />
+    <AssociationSet Name="FK_Especialidades_Cedes" Association="Self.FK_Especialidades_Cedes">
+      <End Role="Cedes" EntitySet="Cedes" />
+      <End Role="Especialidades" EntitySet="Especialidades" />
+    </AssociationSet>
+    <EntitySet Name="Modulos" EntityType="Db_CPuentesModel.Modulo" />
+    <EntitySet Name="Publicaciones" EntityType="Db_CPuentesModel.Publicacione" />
+    <AssociationSet Name="FK_Comentarios_Publicaciones" Association="Db_CPuentesModel.FK_Comentarios_Publicaciones">
+      <End Role="Publicacione" EntitySet="Publicaciones" />
+      <End Role="Comentario" EntitySet="Comentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publicaciones_Modulos" Association="Db_CPuentesModel.FK_Publicaciones_Modulos">
+      <End Role="Modulo" EntitySet="Modulos" />
+      <End Role="Publicacione" EntitySet="Publicaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoraciones_Publicaciones" Association="Db_CPuentesModel.FK_Valoraciones_Publicaciones">
+      <End Role="Publicacione" EntitySet="Publicaciones" />
+      <End Role="Valoracione" EntitySet="Valoraciones" />
+    </AssociationSet>
+    <EntitySet Name="Usuarios" EntityType="Db_CPuentesModel.Usuario" />
+    <AssociationSet Name="FK_Usuarios_Cedes" Association="Db_CPuentesModel.FK_Usuarios_Cedes">
+      <End Role="Cede" EntitySet="Cedes" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comentarios_Usuarios" Association="Db_CPuentesModel.FK_Comentarios_Usuarios">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Comentario" EntitySet="Comentarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Especialidades" Association="Db_CPuentesModel.FK_Usuarios_Especialidades">
+      <End Role="Especialidade" EntitySet="Especialidades" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publicaciones_Usuarios" Association="Db_CPuentesModel.FK_Publicaciones_Usuarios">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Publicacione" EntitySet="Publicaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Roles" Association="Db_CPuentesModel.FK_Usuarios_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Usuario" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sugerencias_Usuarios" Association="Db_CPuentesModel.FK_Sugerencias_Usuarios">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Sugerencia" EntitySet="Sugerencias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Valoraciones_Usuarios" Association="Db_CPuentesModel.FK_Valoraciones_Usuarios">
+      <End Role="Usuario" EntitySet="Usuarios" />
+      <End Role="Valoracione" EntitySet="Valoraciones" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Modulo">
+    <Key>
+      <PropertyRef Name="Id_Modulos" />
+    </Key>
+    <Property Name="Id_Modulos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModulosNombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Publicaciones" Relationship="Db_CPuentesModel.FK_Publicaciones_Modulos" FromRole="Modulo" ToRole="Publicacione" />
+  </EntityType>
+  <EntityType Name="Publicacione">
+    <Key>
+      <PropertyRef Name="Id_Publicacion" />
+    </Key>
+    <Property Name="Id_Publicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+    <Property Name="Nombre_Usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Tema" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Modulos" Type="Int32" Nullable="false" />
+    <Property Name="Publicacion" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="URL_Imagen" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="URL_Archivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_Publicacion" Type="DateTime" Precision="3" />
+    <Property Name="Estado" Type="Boolean" />
+    <NavigationProperty Name="Comentarios" Relationship="Db_CPuentesModel.FK_Comentarios_Publicaciones" FromRole="Publicacione" ToRole="Comentario" />
+    <NavigationProperty Name="Modulo" Relationship="Db_CPuentesModel.FK_Publicaciones_Modulos" FromRole="Publicacione" ToRole="Modulo" />
+    <NavigationProperty Name="Valoraciones" Relationship="Db_CPuentesModel.FK_Valoraciones_Publicaciones" FromRole="Publicacione" ToRole="Valoracione" />
+    <NavigationProperty Name="Usuario" Relationship="Db_CPuentesModel.FK_Publicaciones_Usuarios" FromRole="Publicacione" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_Comentarios_Publicaciones">
+    <End Type="Db_CPuentesModel.Publicacione" Role="Publicacione" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Comentario" Role="Comentario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publicacione">
+        <PropertyRef Name="Id_Publicacion" />
+      </Principal>
+      <Dependent Role="Comentario">
+        <PropertyRef Name="Id_Publicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publicaciones_Modulos">
+    <End Type="Db_CPuentesModel.Modulo" Role="Modulo" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Publicacione" Role="Publicacione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modulo">
+        <PropertyRef Name="Id_Modulos" />
+      </Principal>
+      <Dependent Role="Publicacione">
+        <PropertyRef Name="Id_Modulos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoraciones_Publicaciones">
+    <End Type="Db_CPuentesModel.Publicacione" Role="Publicacione" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Valoracione" Role="Valoracione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publicacione">
+        <PropertyRef Name="Id_Publicacion" />
+      </Principal>
+      <Dependent Role="Valoracione">
+        <PropertyRef Name="Id_Publicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_Usuario" />
+    </Key>
+    <Property Name="Id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ImagenPerfil" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Cede" Type="Int32" Nullable="false" />
+    <Property Name="Id_Especialidad" Type="Int32" Nullable="false" />
+    <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ConfirmarCrontraseña" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id_Rol" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" />
+    <Property Name="Fecha_Registro" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Cede" Relationship="Db_CPuentesModel.FK_Usuarios_Cedes" FromRole="Usuario" ToRole="Cede" />
+    <NavigationProperty Name="Comentarios" Relationship="Db_CPuentesModel.FK_Comentarios_Usuarios" FromRole="Usuario" ToRole="Comentario" />
+    <NavigationProperty Name="Especialidade" Relationship="Db_CPuentesModel.FK_Usuarios_Especialidades" FromRole="Usuario" ToRole="Especialidade" />
+    <NavigationProperty Name="Publicaciones" Relationship="Db_CPuentesModel.FK_Publicaciones_Usuarios" FromRole="Usuario" ToRole="Publicacione" />
+    <NavigationProperty Name="Role" Relationship="Db_CPuentesModel.FK_Usuarios_Roles" FromRole="Usuario" ToRole="Role" />
+    <NavigationProperty Name="Sugerencias" Relationship="Db_CPuentesModel.FK_Sugerencias_Usuarios" FromRole="Usuario" ToRole="Sugerencia" />
+    <NavigationProperty Name="Valoraciones" Relationship="Db_CPuentesModel.FK_Valoraciones_Usuarios" FromRole="Usuario" ToRole="Valoracione" />
+  </EntityType>
+  <Association Name="FK_Usuarios_Cedes">
+    <End Type="Db_CPuentesModel.Cede" Role="Cede" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cede">
+        <PropertyRef Name="Id_Cede" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Id_Cede" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comentarios_Usuarios">
+    <End Type="Db_CPuentesModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Comentario" Role="Comentario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Comentario">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Especialidades">
+    <End Type="Db_CPuentesModel.Especialidade" Role="Especialidade" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especialidade">
+        <PropertyRef Name="Id_Especialidad" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Id_Especialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publicaciones_Usuarios">
+    <End Type="Db_CPuentesModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Publicacione" Role="Publicacione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Publicacione">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Roles">
+    <End Type="Db_CPuentesModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_Rol" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sugerencias_Usuarios">
+    <End Type="Db_CPuentesModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="Db_CPuentesModel.Sugerencia" Role="Sugerencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Sugerencia">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Valoraciones_Usuarios">
+    <End Type="Db_CPuentesModel.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="Db_CPuentesModel.Valoracione" Role="Valoracione" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Valoracione">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

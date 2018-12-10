@@ -1,0 +1,111 @@
+﻿@model IEnumerable<SocialPuentes.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagenPerfil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contraseña)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmarCrontraseña)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cede.CedeNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialidade.EspecialidadNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role.Rol)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagenPerfil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contraseña)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfirmarCrontraseña)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha_Registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cede.CedeNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialidade.EspecialidadNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role.Rol)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Usuario }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Usuario }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Usuario })
+        </td>
+    </tr>
+}
+
+</table>

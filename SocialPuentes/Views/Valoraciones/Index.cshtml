@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SocialPuentes.Models.Valoracione>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publicacione.Nombre_Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Full_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valoracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Publicacione.Nombre_Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Full_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Valoracion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_Valoracion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Valoracion })
+        </td>
+    </tr>
+}
+
+</table>

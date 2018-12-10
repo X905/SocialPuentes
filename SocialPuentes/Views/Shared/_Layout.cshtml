@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title -Social Puentes</title>
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Course Project">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+        <link href="plugins/fontawesome-free-5.0.1/css/fontawesome-all.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+        <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    </head>
+    <body>
+        <header class="header d-flex flex-row">
+            <div class="header_content d-flex flex-row align-items-center">
+                <!-- Logo -->
+
+                <div class="logo mr-auto">
+                    <a href="index.html">Social<span>Puentes</span></a>
+                </div>
+
+
+                <!-- Main Navigation -->
+                <nav class="main_nav_container">
+                    <div class="main_nav">
+                        <ul class="main_nav_list">
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Categoríass")">Categoria</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Cedes")">Cedes</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Especialidades")">Especialidades</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Publicaciones")">Publicaciones</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Comentarios")">Comentarios</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Roles")">Roles</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Sugerencias")">Sugerencias</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Usuarios")">Usuarios</a></li>
+                            <li class="main_nav_item"><a href="@Url.Action("Index","Valoraciones")">Valoraciones</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="header_side d-flex flex-row justify-content-center align-items-center">
+                <a href=""><span>Cerrar sesión</span></a> 
+            </div>
+
+            <!-- Hamburger -->
+            <div class="hamburger_container">
+                <i class="fas fa-bars trans_200"></i>
+            </div>
+
+        </header>
+
+        <div class="super_container">
+            @RenderBody()
+            <hr />
+
+        </div>
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    </body>
+    </html>
+
+
+
